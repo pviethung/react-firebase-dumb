@@ -19,7 +19,7 @@ body {
   --app-color-theme: #cffafe;
   --app-color-theme-dark: #38bdf8;
   --app-color-text: #475569;
-  --app-transition-duration: .5s;
+  --app-transition-duration: 0.5s;
   color: var(--app-color-text);
 }
 
@@ -51,8 +51,11 @@ button {
   padding: 8px 15px;
   background-color: #fff;
   border-radius: 5px;
-  border: 1px solid var(--app-color-theme-dark);
-  transition: background-color var(--app-transition-duration), color var(--app-transition-duration);
+  border: 2px solid var(--app-color-theme-dark);
+  color: var(--app-color-theme-dark);
+  font-weight: bold;
+  transition: background-color var(--app-transition-duration),
+    color var(--app-transition-duration);
 }
 
 .btn:hover {
@@ -60,3 +63,11 @@ button {
   color: #fff;
 }
 
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+.mt-5 {
+  margin-top: 5px;
+}

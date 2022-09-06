@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useLogout } from '../hooks/useLogout';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
   const { user } = useAuthContext();
+  const { logout } = useLogout();
 
   return (
     <nav className={`${styles.container}`}>
@@ -23,7 +25,9 @@ const Navbar = () => {
 
         {user?.displayName && (
           <li>
-            <button className="btn">Logout</button>
+            <button onClick={() => logout()} className="btn">
+              Logout
+            </button>
           </li>
         )}
       </ul>

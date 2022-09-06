@@ -1,38 +1,62 @@
-.App {
-  text-align: center;
+@import-normalize;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html {
+  font-size: 62.5%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.6rem;
+  --app-color-theme: #cffafe;
+  --app-color-theme-dark: #38bdf8;
+  --app-color-text: #475569;
+  --app-transition-duration: .5s;
+  color: var(--app-color-text);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+a,
+a:focus,
+a:visited {
+  color: var(--app-color-text);
 }
 
-.App-link {
-  color: #61dafb;
+a {
+  transition: color var(--app-transition-duration);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+a:hover {
+  color: var(--app-color-theme-dark);
 }
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  margin: auto;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.btn {
+  padding: 8px 15px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid var(--app-color-theme-dark);
+  transition: background-color var(--app-transition-duration), color var(--app-transition-duration);
+}
+
+.btn:hover {
+  background-color: var(--app-color-theme-dark);
+  color: #fff;
+}
+

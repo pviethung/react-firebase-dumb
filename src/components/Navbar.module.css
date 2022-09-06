@@ -1,0 +1,22 @@
+.container {
+    background-color: var(--app-color-theme);
+}
+.container > ul {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    list-style: none;
+}
+.container > ul > li:first-child {
+    margin-right: auto;
+    font-size: 3.2rem;
+    font-weight: bold;
+}
+.container > ul > li:not(:first-child) {
+    padding-left: 15px;
+}
+.container > ul > li > a {
+    text-decoration: none;
+}
+
+

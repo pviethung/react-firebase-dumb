@@ -24,11 +24,16 @@ const Navbar = () => {
         )}
 
         {user?.displayName && (
-          <li>
-            <button onClick={() => logout()} className="btn">
-              Logout
-            </button>
-          </li>
+          <>
+            <li>
+              <p>Hello, {user.displayName}</p>
+            </li>
+            <li>
+              <button onClick={() => logout()} className="btn">
+                Logout
+              </button>
+            </li>
+          </>
         )}
       </ul>
     </nav>

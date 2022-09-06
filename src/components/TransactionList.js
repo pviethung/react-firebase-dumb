@@ -1,12 +1,14 @@
 import styles from './TransactionList.module.css';
 
-const TransactionList = () => {
+const TransactionList = ({ transactions }) => {
   return (
     <ul className={styles.container}>
-      <li>
-        <p>Ballons</p>
-        <p>$20</p>
-      </li>
+      {transactions.map((transaction) => (
+        <li key={transaction.id}>
+          <p>{transaction.name}</p>
+          <p>${transaction.amount}</p>
+        </li>
+      ))}
     </ul>
   );
 };

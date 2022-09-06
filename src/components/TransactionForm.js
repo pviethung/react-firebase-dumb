@@ -1,11 +1,11 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useFirestoreCollection } from '../hooks/useFirestoreCollection';
 import Form from './Form';
 
 const TransactionForm = () => {
   const nameRef = useRef();
   const amountRef = useRef();
-  const { addDocument, isError, data, isLoading, error } =
+  const { addDocument, isError, isLoading, error, data } =
     useFirestoreCollection('transactions');
 
   const submitHandler = (e) => {
@@ -13,9 +13,13 @@ const TransactionForm = () => {
     addDocument(nameRef.current.value, amountRef.current.value);
   };
 
-  if (data) {
-    console.log(data);
-  }
+  useEffect(() => {
+    if (data) {
+      nameRef.current.focus();
+      nameRef.current.value = '';
+      amountRef.current.value = '';
+    }
+  }, [data]);
 
   return (
     <Form onSubmit={submitHandler}>

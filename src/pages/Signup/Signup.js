@@ -11,7 +11,11 @@ const Signup = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    signup(emailRef.current.value, passwordRef.current.value);
+    signup(
+      emailRef.current.value,
+      passwordRef.current.value,
+      displayNameRef.current.value
+    );
   };
 
   if (error) {

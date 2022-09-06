@@ -1,11 +1,13 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 import { auth } from '../firebase/config';
+import { useAuthContext } from './useAuthContext';
 
 export const useLogin = () => {
   const [error, setError] = useState(null);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const { dispatch } = useAuthContext();
 
   const login = async (email, password) => {
     setIsError(false);
@@ -14,7 +16,7 @@ export const useLogin = () => {
 
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
-      console.log(res.user);
+      dispatch({ type: 'LOGIN', payload: res.user });
       setIsLoading(false);
     } catch (error) {
       setIsError(true);

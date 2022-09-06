@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useState } from 'react';
 import { auth } from '../firebase/config';
 
@@ -7,14 +7,20 @@ export const useSignup = () => {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const signup = async (email, password) => {
+  const signup = async (email, password, displayName) => {
     setIsError(false);
     setIsLoading(true);
     setError(null);
 
     try {
-      const res = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(res.user);
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      await updateProfile(user, {
+        displayName,
+      });
       setIsLoading(false);
     } catch (error) {
       setIsError(true);

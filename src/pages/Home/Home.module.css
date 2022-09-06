@@ -1,0 +1,30 @@
+.container {
+  margin-top: 50px;
+  display: flex;
+  justify: space-between;
+}
+
+.col-right {
+  margin-left: auto;
+  width: 350px;
+}
+.form-container {
+  background-color: var(--app-color-theme-dark);
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.form-container > form > input {
+  border: none;
+}
+
+.form-container > form > label {
+  color: #fff;
+}
+.form-container > form > button {
+  width: 100%;
+  color: #fff;
+  border: 2px solid #fff;
+  background-color: var(--app-color-theme-dark);
+}

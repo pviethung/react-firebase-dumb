@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  list-style: none;
+}
+
+.container > li {
+  border-left: 4px solid var(--app-color-theme-dark);
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  box-shadow: 3px 3px 5px 0px rgba(219, 219, 219, 0.75);
+}

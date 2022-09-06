@@ -7,12 +7,16 @@ const Signup = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const displayNameRef = useRef();
-  const { signup, isError, error } = useSignup();
+  const { signup, isError, error, isLoading } = useSignup();
 
   const submitHandler = (e) => {
     e.preventDefault();
     signup(emailRef.current.value, passwordRef.current.value);
   };
+
+  if (error) {
+    console.log(error);
+  }
 
   return (
     <div className={styles.container}>
@@ -24,8 +28,10 @@ const Signup = () => {
         <input ref={passwordRef} type="password" />
         <label>Display name</label>
         <input ref={displayNameRef} type="text" />
-        <button className="btn">Signup</button>
-        {isError && <p className="error mt-5">{error.message}</p>}
+        <button disabled={isLoading} className="btn">
+          {isLoading ? 'Loading...' : 'Signup'}
+        </button>
+        {isError && <p className="error mt-10">{error.code}</p>}
       </Form>
     </div>
   );

@@ -56,7 +56,7 @@ export const useFirestoreCollection = (collectionPath) => {
 
       setData(transactions);
     });
-  }, [collectionPath]);
+  }, [collectionPath, user.uid]);
 
   return {
     data,

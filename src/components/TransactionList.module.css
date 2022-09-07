@@ -10,7 +10,20 @@
   border-left: 4px solid var(--app-color-theme-dark);
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 40px 20px;
   box-shadow: 3px 3px 5px 0px rgba(219, 219, 219, 0.75);
   margin-bottom: 20px;
+  position: relative;
+}
+
+.container > li > button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: var(-app-color-theme);
+  width: 20px;
+  height: 20px;
+  color: var(--app-color-theme-dark);
+  border: 0;
+  outline: none;
 }

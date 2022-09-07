@@ -4,6 +4,8 @@ import {
   onSnapshot,
   query,
   where,
+  deleteDoc,
+  doc,
 } from 'firebase/firestore';
 import { useCallback, useState } from 'react';
 import { db } from '../firebase/config';
@@ -43,6 +45,10 @@ export const useFirestoreCollection = (collectionPath) => {
     );
   };
 
+  const deleteDocument = (id) => {
+    request(deleteDoc(doc(db, 'transactions', id)));
+  };
+
   const onSnapshotDocument = useCallback(() => {
     const q = query(
       collection(db, collectionPath),
@@ -65,5 +71,6 @@ export const useFirestoreCollection = (collectionPath) => {
     error,
     onSnapshotDocument,
     addDocument,
+    deleteDocument,
   };
 };

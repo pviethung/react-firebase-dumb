@@ -37,6 +37,16 @@ a:hover {
   color: var(--app-color-theme-dark);
 }
 
+select {
+  margin-top: 20px;
+  outline: none;
+  padding: 8px 15px;
+  background-color: #fff;
+  border-radius: 5px;
+  border-color: var(--app-color-text);
+  font-weight: bold;
+}
+
 button {
   cursor: pointer;
 }

@@ -6,6 +6,7 @@ import {
   where,
   deleteDoc,
   doc,
+  orderBy,
 } from 'firebase/firestore';
 import { useCallback, useState } from 'react';
 import { db } from '../firebase/config';
@@ -49,20 +50,46 @@ export const useFirestoreCollection = (collectionPath) => {
     request(deleteDoc(doc(db, 'transactions', id)));
   };
 
-  const onSnapshotDocument = useCallback(() => {
-    const q = query(
-      collection(db, collectionPath),
-      where('uid', '==', user.uid)
-    );
-    return onSnapshot(q, (snapshot) => {
-      const transactions = [];
-      snapshot.forEach((doc) => {
-        transactions.push({ ...doc.data(), id: doc.id });
-      });
+  const onSnapshotDocument = useCallback(
+    (queryOptions) => {
+      const constraints = [];
+      if (queryOptions.where) {
+        const whereConstrains = [];
 
-      setData(transactions);
-    });
-  }, [collectionPath, user.uid]);
+        queryOptions.where.forEach((constraint) => {
+          whereConstrains.push(where(...constraint));
+        });
+
+        constraints.push(...whereConstrains);
+      }
+
+      if (queryOptions.orderBy) {
+        constraints.push(orderBy(...queryOptions.orderBy));
+      }
+
+      const q = query(collection(db, collectionPath), ...constraints);
+
+      return onSnapshot(
+        q,
+        (snapshot) => {
+          const transactions = [];
+          snapshot.forEach((doc) => {
+            transactions.push({ ...doc.data(), id: doc.id });
+          });
+
+          setData(transactions);
+          setError(null);
+          setIsError(false);
+        },
+        (error) => {
+          setData(null);
+          setError(error);
+          setIsError(true);
+        }
+      );
+    },
+    [collectionPath]
+  );
 
   return {
     data,

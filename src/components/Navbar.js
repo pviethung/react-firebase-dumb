@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <nav className={`${styles.container}`}>
       <ul className="container">
-        <li>MyMoney</li>
+        <li>ImBroke</li>
 
         {!user?.displayName && (
           <>
